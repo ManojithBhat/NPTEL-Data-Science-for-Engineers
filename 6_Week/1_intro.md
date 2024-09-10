@@ -20,15 +20,19 @@
    - Measures the **monotonic relationship** between two variables.
    - Ranges from -1 (monotonically decreasing) to 1 (monotonically increasing).
    - 0 means no monotonic relationship.
+   - can be used even when associasion is not linear. 
 
    Formula: $1 - \frac{6 \sum d_i^2}{n(n^2 - 1)}$
 
    where,  
    $d_i$ is the difference between the ranks of the two variables for each observation.
+   first we need to assign the rank to each of the data in x and y with the highest getting the least if there is a tie , split the rank. And this is the rank we compute.
 
-3. #### Kendall Rank Correlation Coefficient
+4. #### Kendall Rank Correlation Coefficient
 
    - Correlation Coefficient to measure **association between two ordinal variables**.
+  
+   An ordinal variable is a type of categorical variable where the values have a specific order or ranking
 
    **Concordant Pair**: A pair of observations ($x_i$, $y_i$) and ($x_j$, $y_j$) such that $x_i < x_j$ and $y_i < y_j$ or $x_i > x_j$ and $y_i > y_j$.
 
@@ -44,15 +48,42 @@
 
 ## Lecture 2: Linear Regression
 
+### Motivation
+Purpose is to buuild  a functional relationship ( model ) between dependent and independent variables. 
+
 ### Regression Basics
 
 - **Dependent Variable**: The variable we are trying to predict.
 - **Independent Variable**: The variable we are using to predict the dependent variable.
 
+### Regression Types 
+* Classification of analysis
+  - Univariate - 1 dependent and 1 independent.
+  - Multivariate - multiple independent and multiple dependent vairables.
+
+  - Simple - one dependent and one independent ( SISO )
+  - multiple - one dependent and multiple independent ( MISO )
+
 ### Ordinary Least Squares (OLS)
 
 - Minimizes the **sum of squared errors (SSE)**.
 - The line that minimizes the sum of squared errors is the line that minimizes the distance between the line and the data points.
+
+**R^2 coeffecient** - coeffecient of determination.
+it is a measure of variability in output variable explained y input variable.
+
+Formula : $1 - \frac{ \sum (y_i-y)^2}{ \sum (y_i - y_b)^2}$
+y is variability explained by B_o + B_1x_i
+y_b is total variablility
+
+Value is bw 0 and 1
+value close to 0 indicates poor fit.
+value close to 1 indicates the good fit. ( not a sole criterion )
+
+R code for fitting the model :
+``` R    
+lm(formula = independent_var ~ dependent_var )
+```
 
 ## Lecture 3: Model Assessment
 
